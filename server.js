@@ -12,19 +12,22 @@ app.use(express.static('public'));
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/museum', {
+mongoose.connect('mongodb://localhost:27017/canyonBeta', {
   useNewUrlParser: true
 });
 
 // Create a scheme for items in the museum: a title and a path to an image.
 const itemSchema = new mongoose.Schema({
-  title: String,
+  name: String,
   description: String,
   path: String,
+  location: String,
+  coords: Number,
+  conditions: String,
 });
 
 // Create a model for items in the museum.
-const Item = mongoose.model('Item', itemSchema);
+const Canyon = mongoose.model('Canyon', itemSchema);
 
 const multer = require('multer')
 const upload = multer({
@@ -36,7 +39,7 @@ const upload = multer({
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
 // the path where the photo is stored in the file system.
-app.post('/api/canyons', upload.single('photo'), async (req, res) => {
+app.post('/api/photos', upload.single('photo'), async (req, res) => {
   // Just a safety check
   if (!req.file) {
     return res.sendStatus(400);
@@ -49,14 +52,17 @@ app.post('/api/canyons', upload.single('photo'), async (req, res) => {
 // Create a new item in the museum: takes a title and a path to an image.
 
 app.post('/api/canyons', async (req, res) => {
-  const item = new Item({
-    title: req.body.title,
+  const canyon = new Canyon({
+    name: req.body.name,
     description: req.body.description,
     path: req.body.path,
+    location: req.body.location,
+    coords: req.body.coords,
+    conditions: req.body.conditions,
   });
   try {
-    await item.save();
-    res.send(item);
+    await canyon.save();
+    res.send(canyon);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -67,16 +73,16 @@ app.post('/api/canyons', async (req, res) => {
 app.get('/api/canyons', async (req, res) => {
   try {
     let canyons = await Canyon.find();
-    res.send(items);
+    res.send(canyons);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
   }
 });
 
-app.delete('/api/items/:id', async (req, res) => {
+app.delete('/api/canyons/:id', async (req, res) => {
   try {
-    await Item.deleteOne({
+    await Canyon.deleteOne({
       _id: req.params.id
     })
     res.sendStatus(200);
@@ -86,16 +92,19 @@ app.delete('/api/items/:id', async (req, res) => {
   }
 });
 
-app.put('/api/items/:id', async (req, res) => {
+app.put('/api/canyons/:id', async (req, res) => {
   try {
-    let item = await Item.findOne({
+    let canyon = await Canyon.findOne({
       _id: req.params.id
     });
-    console.log(item);
-    item.title = req.body.title;
-    item.description = req.body.description;
+    console.log(canyon);
+    canyon.name = req.body.name;
+    canyon.description = req.body.description;
+    canyon.location = req.body.location;
+    canyon.coords = req.body.coords;
+    canyon.conditions = req.body.conditions;
     try {
-      await item.save();
+      await canyon.save();
     } catch (error) {
       console.log(error);
     }

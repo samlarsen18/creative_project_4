@@ -36,6 +36,7 @@
     <h4>Choose an area below</h4>
 
     <div class="canyons" id="app">
+      <!--
       <div class="column">
         <div class="canyon_icon">
           <a href="/pages/huntress.html"><img src="/images/huntress.jpg">
@@ -60,12 +61,14 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <div class="canyons" v-if="canyons.length > 0">
-      <div class="canyon" v-for="c in canyons" @click="selectItem(s)">{{c.title}}
+    -->
+      <div v-if="canyons.length > 0">
+        <div v-for="c in canyons" @click="getCanyons(c)">{{c.name}}
+        </div>
       </div>
     </div>
+
+
   </div>
 
 
@@ -77,7 +80,7 @@
 
 
   <div class="footer" id=stubbornFooter>
-    <a href="https://github.com/samlarsen18/creative_project_2">
+    <a href="https://github.com/samlarsen18/creative_project_4">
       - GitHub Repository -<a>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

@@ -33,11 +33,91 @@
   <h2>Submit Beta</h2>
   <div class="beta_body">
 
+    <div id="admin" class="content">
+      <div class="block">
+        <div class="heading">
+          <h2>Add a Canyon</h2>
+        </div>
+        <div class="form">
+          <input v-model="name" placeholder="Canyon Name">
+          <p></p>
+          <input type="file" name="photo" @change="fileChanged">
+          <p></p>
+          <textarea v-model="description" placeholder="Description"></textarea>
+          <p></p>
+          <textarea v-model="location" placeholder="Location"></textarea>
+          <p></p>
+          <textarea v-model="conditions" placeholder="Conditions"></textarea>
+          <p></p>
+          <button @click="upload">Upload</button>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="heading">
+          <h2>Edit/Delete a Canyon</h2>
+        </div>
+        <div class="form">
+          <input v-model="findName" placeholder="Search">
+          <div class="suggestions" v-if="suggestions.length > 0">
+            <div class="suggestion" v-for="s in suggestions" @click="selectCanyon(s)">{{s.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="beta_body" v-if="addCanyon">
+        <div class="side_image">
+          <img :src="addCanyon.path" id="no_rotate" />
+        </div>
+        <div class="main_text">
+          <h4>Name</h4>
+          <h5>{{addCanyon.name}}</h5>
+          <h4>Description</h4>
+          <h5>{{addCanyon.description}}</h5>
+          <h4>Location</h4>
+          <h5>{{addCanyon.location}}</h5>
+          <h4>Conditions</h4>
+          <h5>{{addCanyon.conditions}}</h5>
+        </div>
+      </div>
+
+
+      <div class="beta_body" v-if="findCanyon">
+        <div class="side_image">
+          <img :src="findCanyon.path" id="no_rotate" />
+        </div>
+        <div class="main_text">
+          <h4>Name</h4>
+          <input v-model="findCanyon.name">
+          <h4>Description</h4>
+          <textarea v-model="findCanyon.description"></textarea>
+          <h4>Location</h4>
+          <textarea v-model="findCanyon.location"></textarea>
+          <h4>Conditions</h4>
+          <textarea v-model="findCanyon.conditions"></textarea>
+          <div class="actions" v-if="findCanyon">
+            <button @click="deleteCanyon(findCanyon)">Delete</button>
+            <button @click="editCanyon(findCanyon)">Edit</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
 
   </div>
 
   <div class="footer" id=stubbornFooter>
-    <a href="https://github.com/samlarsen18/creative_project_1">
+    <a href="https://github.com/samlarsen18/creative_project_4">
       - GitHub Repository -<a>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

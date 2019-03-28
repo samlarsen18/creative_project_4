@@ -14,6 +14,7 @@ var app = new Vue({
       }
     }
   },
+
   created() {
     this.getCanyons();
   },

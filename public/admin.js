@@ -1,64 +1,80 @@
 var app = new Vue({
   el: '#admin',
   data: {
-    title: "",
+    name: "",
     description: "",
+    location: "",
+    coords: "",
+    conditions: "",
     file: null,
-    addItem: null,
-    items: [],
-    findTitle: "",
-    findItem: null,
+    addCanyon: null,
+    canyons: [],
+    findName: "",
+    findCanyon: null,
   },
   methods: {
     fileChanged(event) {
       this.file = event.target.files[0]
     },
     async upload() {
-      try {
-        const formData = new FormData();
-        formData.append('photo', this.file, this.file.name)
-        let r1 = await axios.post('/api/photos', formData);
-        let r2 = await axios.post('/api/items', {
-          title: this.title,
-          description: this.description,
-          path: r1.data.path
-        });
-        this.addItem = r2.data;
-      } catch (error) {
-        console.log(error);
+      if (this.name) {
+        try {
+          const formData = new FormData();
+          formData.append('photo', this.file, this.file.name)
+          let r1 = await axios.post('/api/photos', formData);
+          let r2 = await axios.post('/api/canyons', {
+            name: this.name,
+            description: this.description,
+            location: this.location,
+            coords: this.coords,
+            conditions: this.conditions,
+            path: r1.data.path
+          });
+          this.addCanyon = r2.data;
+          this.findCanyon = null;
+          this.getCanyons();
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        alert("Please enter at least a canyon name");
       }
     },
-    async getItems() {
+    async getCanyons() {
       try {
-        let response = await axios.get("/api/items");
-        this.items = response.data;
+        let response = await axios.get("/api/canyons");
+        this.canyons = response.data;
         return true;
       } catch (error) {
         console.log(error);
       }
     },
-    selectItem(item) {
-      this.findTitle = "";
-      this.findItem = item;
+    selectCanyon(canyon) {
+      this.findName = "";
+      this.findCanyon = canyon;
+      this.addCanyon = null;
     },
-    async deleteItem(item) {
+    async deleteCanyon(canyon) {
       try {
-        let response = axios.delete("/api/items/" + item._id);
-        this.findItem = null;
-        this.getItems();
+        let response = axios.delete("/api/canyons/" + canyon._id);
+        this.findCanyon = null;
+        this.getCanyons();
         return true;
       } catch (error) {
         console.log(error);
       }
     },
-    async editItem(item) {
+    async editCanyon(canyon) {
       try {
-        let response = await axios.put("/api/items/" + item._id, {
-          title: this.findItem.title,
-          description: this.findItem.description,
+        let response = await axios.put("/api/canyons/" + canyon._id, {
+          name: this.findCanyon.name,
+          description: this.findCanyon.description,
+          location: this.findCanyon.location,
+          coords: this.findCanyon.coords,
+          conditions: this.findCanyon.conditions,
         });
-        this.findItem = null;
-        this.getItems();
+        this.findCanyon = null;
+        this.getCanyons();
         return true;
       } catch (error) {
         console.log(error);
@@ -66,11 +82,12 @@ var app = new Vue({
     },
   },
   created() {
-    this.getItems();
+    this.getCanyons();
   },
   computed: {
     suggestions() {
-      return this.items.filter(item => item.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
+      return this.canyons.filter(canyon => canyon.name.toLowerCase().startsWith(this.findName.toLowerCase()));
+
     }
   },
 });

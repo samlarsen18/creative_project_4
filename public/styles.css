@@ -39,7 +39,7 @@ h2 {
   font-size: 45px;
   padding: 10px;
   text-align: center;
-  margin: 30px;
+  margin: 5px;
 }
 
 h3 {
@@ -178,4 +178,51 @@ h4 {
   width: 90%;
   height: 400px;
   background-color: grey;
+}
+
+/******* Admin Page *****/
+.beta_body {
+  justify-content: center;
+  margin-top: 0;
+}
+
+.content {
+  display: inline-block;
+}
+
+.heading {
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.heading h2 {
+  margin: 0px;
+  margin-left: 10px;
+}
+
+.block {
+  display: inline-grid;
+  margin: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
+  justify-items: center;
+}
+
+.suggestions {
+  width: 200px;
+  border: 1px solid #ccc;
+}
+
+.suggestion {
+  min-height: 20px;
+}
+
+.suggestion:hover {
+  background-color: #5BDEFF;
+  color: #fff;
+}
+
+.textarea {
+  width: -webkit-fill-available;
 }
