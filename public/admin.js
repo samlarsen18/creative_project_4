@@ -11,6 +11,7 @@ var app = new Vue({
     canyons: [],
     findName: "",
     findCanyon: null,
+    rotate: "",
   },
   methods: {
     fileChanged(event) {
@@ -28,6 +29,7 @@ var app = new Vue({
             location: this.location,
             coords: this.coords,
             conditions: this.conditions,
+            rotate: this.rotate,
             path: r1.data.path
           });
           this.addCanyon = r2.data;
@@ -72,6 +74,7 @@ var app = new Vue({
           location: this.findCanyon.location,
           coords: this.findCanyon.coords,
           conditions: this.findCanyon.conditions,
+          rotate: this.findCanyon.rotate,
         });
         this.findCanyon = null;
         this.getCanyons();

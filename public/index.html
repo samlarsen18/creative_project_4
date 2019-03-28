@@ -32,41 +32,30 @@
 
 
   <div class="home_body">
-    <h3>Welcome To The Home Of Quality And Accurate Canyon Beta </h3>
+    <h3>Welcome To The Home Of Quality Canyon Beta </h3>
     <h4>Choose an area below</h4>
 
-    <div class="canyons" id="app">
-      <!--
-      <div class="column">
+
+    <div class="canyons" v-if="canyons.length > 0" id="app">
+      <div class="canyon_block" v-for="c in canyons" @click="getCanyons(c)">
         <div class="canyon_icon">
-          <a href="/pages/huntress.html"><img src="/images/huntress.jpg">
-            <div class="canyon_text"> The Huntress</div>
-          </a>
+          <img :src="c.path" v-bind:class="{rotate : c.rotate}">
+          <div class="canyon_text">{{c.name}}</div>
         </div>
-        <div class="canyon_icon">
-          <a href="/pages/jollys.html"><img src="/images/jollys.jpg">
-            <div class="canyon_text"> Jollys Gulch</div>
-          </a>
-        </div>
-      </div>
-      <div class="column">
-        <div class="canyon_icon">
-          <a href="/pages/lep.html"><img src="/images/lep.jpg" height=100px width=100px>
-            <div class="canyon_text"> Leprechaun Canyon</div>
-          </a>
-        </div>
-        <div class="canyon_icon">
-          <a href="/pages/pinecreek.html"><img src="/images/pine.jpg">
-            <div class="canyon_text"> Pinecreek</div>
-          </a>
-        </div>
-      </div>
-    -->
-      <div v-if="canyons.length > 0">
-        <div v-for="c in canyons" @click="getCanyons(c)">{{c.name}}
+        <div class="canyon_block_cover">
+          <div class="canyon_block_info">
+            <h3>{{c.name}}</h3>
+            <h4>Description</h4>
+            <h5>{{c.description}}</h5>
+            <h4>Location</h4>
+            <h5>{{c.location}}</h5>
+            <h4>Conditions</h4>
+            <h5>{{c.conditions}}</h5>
+          </div>
         </div>
       </div>
     </div>
+
 
 
   </div>

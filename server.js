@@ -24,6 +24,7 @@ const itemSchema = new mongoose.Schema({
   location: String,
   coords: Number,
   conditions: String,
+  rotate: Boolean,
 });
 
 // Create a model for items in the museum.
@@ -59,6 +60,7 @@ app.post('/api/canyons', async (req, res) => {
     location: req.body.location,
     coords: req.body.coords,
     conditions: req.body.conditions,
+    rotate: req.body.rotate,
   });
   try {
     await canyon.save();
@@ -103,6 +105,7 @@ app.put('/api/canyons/:id', async (req, res) => {
     canyon.location = req.body.location;
     canyon.coords = req.body.coords;
     canyon.conditions = req.body.conditions;
+    canyon.rotate = req.body.rotate;
     try {
       await canyon.save();
     } catch (error) {
