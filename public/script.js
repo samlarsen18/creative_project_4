@@ -1,13 +1,13 @@
 var app = new Vue({
   el: '#app',
   data: {
-    items: [],
+    canyons: [],
   },
   methods: {
-    async getItems() {
+    async getCanyons() {
       try {
-        let response = await axios.get("/api/items");
-        this.items = response.data;
+        let response = await axios.get("/api/canyons");
+        this.canyons = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -15,6 +15,6 @@ var app = new Vue({
     }
   },
   created() {
-    this.getItems();
+    this.getCanyons();
   },
 });

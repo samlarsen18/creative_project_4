@@ -1,39 +1,162 @@
 body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  background: #fff;
-  padding: 0px;
-  margin: 0px;
+  background-color: #F7FFF5;
+  background-size: cover;
 }
 
-/* Header */
-.header {
-  display: flex;
-  padding: 20px 100px 0px 100px;
-  background-color: #5BDEFF;
-  color: #fff;
+header {
+  align-items: center;
+  border-bottom: black solid 3px;
 }
 
-.title {
-  margin-top: 10px;
-}
-
-.title h1, .title h2 {
-  margin: 0px;
-}
-
-.title h1 {
-  border-top: 1px solid #000;
-}
-
-/* Footer */
-.footer {
-  height: 50px;
-  padding: 20px 100px 0px 100px;
-}
-
-.repo {
+.image {
+  background-image: url("/images/lone_cairn2.jpg");
+  background-color: white;
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+h1 {
+  padding: 50px;
+  padding-top: 35px;
+  font-family: 'Indie Flower', cursive;
+  color: white;
+  font-size: 2.8em;
+}
+
+h2 {
+  color: black;
+  font-family: inherit;
+  font-size: 45px;
+  padding: 10px;
+  text-align: center;
+  margin: 30px;
+}
+
+h3 {
+  color: black;
+  font-family: inherit;
+  padding: 10px;
+}
+
+h4 {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.home_body h4 {
+  color: black;
+  font-family: inherit;
+  font-size: 20px;
+  padding-bottom: 10px;
+  border-bottom: solid 2px black;
+  display: inline;
+}
+
+.home_body {
+  margin: 100px;
+  margin-top: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-link {
+  font-size: large !important;
+  border-right: solid black;
+  margin: 0px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/******** Beta Buttons *********/
+.canyons {
+  margin: 100px;
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.column {
+  flex: 40%;
+  padding: 0 4px;
+}
+
+.canyon_icon {
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.canyon_icon img {
+  transform: rotate(90deg);
+  height: 400px;
+  width: 500px;
+  vertical-align: middle;
+}
+
+.canyon_text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 30px;
+  border: solid white;
+  padding: 4px;
+}
+
+/*********** Beta ************/
+.beta_body {
+  display: flex;
+  margin: 60px;
+  margin-top: 40px;
+}
+
+.side_image {
+  flex-shrink: 1;
+  float: right;
+}
+
+.main_text {
+  flex: 4;
+  text-align: left;
+}
+
+.beta_body img {
+  display: inline;
+  margin: 50px;
+  height: 500px;
+  width: 650px;
+}
+
+#no_rotate {
+  transform: rotate(0deg);
+}
+
+#rotate {
+  transform: rotate(90deg);
+}
+
+/*********** Footer ************/
+.footer {
+  position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
@@ -41,122 +164,18 @@ body {
   text-align: center;
 }
 
+#stubbornFooter {
+  position: relative;
+}
+
 .footer a {
-  color: #000;
+  color: black;
 }
 
-/* Content */
-.content {
-  padding: 20px 100px 0px 100px;
-}
-
-.image h2 {
-  font-style: italic;
-  font-size: 1.7em;
-}
-
-/* Admin */
-.heading {
-  display: flex;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.heading h2 {
-  margin: 0px;
-  margin-left: 10px;
-}
-
-.add, .edit {
-  display: flex;
-}
-
-.circle {
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  padding: 8px;
-  background: #333;
-  color: #fff;
-  text-align: center;
-}
-
-/* Form */
-input, textarea, select, button {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
-}
-
-.form {
-  margin-right: 50px;
-}
-
-/* Uploaded images */
-.upload h2 {
-  margin: 0px;
-}
-
-.upload img {
-  max-width: 300px;
-}
-
-/* Suggestions */
-.suggestions {
-  width: 200px;
-  border: 1px solid #ccc;
-}
-
-.suggestion {
-  min-height: 20px;
-}
-
-.suggestion:hover {
-  background-color: #5BDEFF;
-  color: #fff;
-}
-
-/* Masonry */
-html {
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-.image-gallery {
-  column-gap: 1.5em;
-}
-
-.image {
-  margin: 0 0 1.5em;
-  display: inline-block;
-  width: 100%;
-}
-
-.image img {
-  width: 100%;
-}
-
-/* Masonry on large screens */
-@media only screen and (min-width: 1024px) {
-  .image-gallery {
-    column-count: 4;
-  }
-}
-
-/* Masonry on medium-sized screens */
-@media only screen and (max-width: 1023px) and (min-width: 768px) {
-  .image-gallery {
-    column-count: 3;
-  }
-}
-
-/* Masonry on small screens */
-@media only screen and (max-width: 767px) and (min-width: 540px) {
-  .image-gallery {
-    column-count: 2;
-  }
+/************** Map ***************/
+#map {
+  margin-top: 30px;
+  width: 90%;
+  height: 400px;
+  background-color: grey;
 }

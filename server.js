@@ -36,7 +36,7 @@ const upload = multer({
 
 // Upload a photo. Uses the multer middleware for the upload and then returns
 // the path where the photo is stored in the file system.
-app.post('/api/photos', upload.single('photo'), async (req, res) => {
+app.post('/api/canyons', upload.single('photo'), async (req, res) => {
   // Just a safety check
   if (!req.file) {
     return res.sendStatus(400);
@@ -48,7 +48,7 @@ app.post('/api/photos', upload.single('photo'), async (req, res) => {
 
 // Create a new item in the museum: takes a title and a path to an image.
 
-app.post('/api/items', async (req, res) => {
+app.post('/api/canyons', async (req, res) => {
   const item = new Item({
     title: req.body.title,
     description: req.body.description,
@@ -64,9 +64,9 @@ app.post('/api/items', async (req, res) => {
 });
 
 // Get a list of all of the items in the museum.
-app.get('/api/items', async (req, res) => {
+app.get('/api/canyons', async (req, res) => {
   try {
-    let items = await Item.find();
+    let canyons = await Canyon.find();
     res.send(items);
   } catch (error) {
     console.log(error);
